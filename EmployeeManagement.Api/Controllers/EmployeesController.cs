@@ -20,13 +20,19 @@ public class EmployeesController : ControllerBase
         _employeesService = employeesService;
     }
 
+    /// <summary>
+    /// Get an employee with subordinates by employee id.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpGet("{id:int}", Name = "GetEmployeeById")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<EmployeeDto>> GetEmployeeById(
         [Required, FromRoute] int id,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         try
         {
@@ -48,6 +54,13 @@ public class EmployeesController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Update employee status by employee id.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="isEnabled"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpPatch("{id:int}/status", Name = "UpdateEmployeeStatus")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -56,7 +69,7 @@ public class EmployeesController : ControllerBase
     public async Task<IActionResult> UpdateEmployeeStatus(
         [Required, FromRoute] int id,
         [Required, FromBody] bool isEnabled,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         try
         {

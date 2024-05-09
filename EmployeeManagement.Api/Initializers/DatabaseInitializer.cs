@@ -28,6 +28,8 @@ public class DatabaseInitializer
         catch (Exception ex)
         {
             _logger.LogError(ex, "An error occurred while creating or seeding the database.");
+
+            throw;
         }
     }
 
