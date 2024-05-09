@@ -30,7 +30,7 @@ public class EmployeesService : IEmployeesService
         {
             _logger.LogError(ex, $"An error occurred while getting Employee with Id = {employeeId}.");
 
-            return new EmployeeDto();
+            throw;
         }
     }
 
@@ -50,7 +50,7 @@ public class EmployeesService : IEmployeesService
         {
             _logger.LogError(ex, $"An error occurred while getting Employee with Id = {employeeId}.");
 
-            return false;
+            throw;
         }
     }
 }
